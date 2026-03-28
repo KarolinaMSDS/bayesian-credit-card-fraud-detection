@@ -133,25 +133,25 @@ Thresholds were tuned using three decision strategies:
 
 Shows model performance on the minority fraud class and highlights why PR-based evaluation is more informative than accuracy for this problem.
 
-![Precision-Recall Curve](figures/precision_recall_curve.png)
+![Precision-Recall Curve](precision_recall_curve.png)
 
 ## ROC Curve
 
 Compares overall ranking ability across models. Useful for broad discrimination, though less informative than PR curves under extreme imbalance.
 
-![ROC Curve](figures/roc_curve.png)
+![ROC Curve](roc_curve.png)
 
 ## Bayesian Predictive Uncertainty
 
 Shows posterior mean fraud probabilities with uncertainty intervals. Narrow intervals indicate high-confidence predictions, while wider intervals highlight ambiguous transactions.
 
-![Bayesian Uncertainty](figures/bayesian_uncertainty_intervals.png)
+![Bayesian Uncertainty](bayesian_uncertainty_intervals.png)
 
 ## Highest-Uncertainty Transactions
 
 Highlights cases where the Bayesian model is least certain, which can support escalation to manual review.
 
-![High Uncertainty Cases](figures/high_uncertainty_cases.png)
+![High Uncertainty Cases](high_uncertainty_cases.png)
 
 ---
 
