@@ -14,11 +14,29 @@ Machine learning project for fraud detection using **Logistic Regression (baseli
 ![Inference](https://img.shields.io/badge/Bayesian%20Inference-ADVI-success)
 ![Focus](https://img.shields.io/badge/Focus-Threshold%20Optimization%20%7C%20Cost%20Analysis-brightgreen)
 ![Evaluation](https://img.shields.io/badge/Metrics-PR--AUC%20%7C%20ROC--AUC%20%7C%20F1-yellow)
-![Status](https://img.shields.io/badge/Project-Portfolio%20Ready-black)
 
 ---
 
 Built an end-to-end fraud detection pipeline on a highly imbalanced credit card transaction dataset using **baseline logistic regression, class-weighted logistic regression, and Bayesian logistic regression**. Improved decision quality through **threshold optimization, cost-sensitive evaluation, and posterior uncertainty estimation**, showing that in rare-event classification, **operating threshold selection can be as important as model selection**. Demonstrated how Bayesian methods add value by quantifying uncertainty for ambiguous cases, which is especially useful in **high-risk business decisions** where confidence matters alongside prediction accuracy.
+
+⚖️ **Tradeoff Analysis**
+
+Different strategies produced meaningfully different outcomes:
+
+- Baseline Logistic (0.5 threshold)
+  - Higher precision (0.817)
+  - Lower recall (0.662)
+  - More missed fraud cases
+
+- Weighted Logistic (default threshold)
+  - Very high recall (0.892)
+  - Extremely low precision (0.064)
+  - Operationally impractical due to excessive false positives
+
+- Bayesian Logistic (target precision strategy)
+  - Balanced performance (F1 = 0.717)
+  - Slightly lower predictive power
+  - Adds uncertainty awareness for decision-making
 
 ---
 
@@ -133,25 +151,25 @@ Thresholds were tuned using three decision strategies:
 
 Shows model performance on the minority fraud class and highlights why PR-based evaluation is more informative than accuracy for this problem.
 
-![Precision-Recall Curve](precision_recall_curve.png)
+<img src="precision_recall_curve.png" width="50%">
 
 ## ROC Curve
 
 Compares overall ranking ability across models. Useful for broad discrimination, though less informative than PR curves under extreme imbalance.
 
-![ROC Curve](roc_curve.png)
+<img src="roc_curve.png" width="50%">
 
 ## Bayesian Predictive Uncertainty
 
 Shows posterior mean fraud probabilities with uncertainty intervals. Narrow intervals indicate high-confidence predictions, while wider intervals highlight ambiguous transactions.
 
-![Bayesian Uncertainty](bayesian_uncertainty_intervals.png)
+<img src="bayesian_uncertainty_intervals.png" width="50%">
 
 ## Highest-Uncertainty Transactions
 
 Highlights cases where the Bayesian model is least certain, which can support escalation to manual review.
 
-![High Uncertainty Cases](high_uncertainty_cases.png)
+<img src="high_uncertainty_cases.png" width="40%">
 
 ---
 
@@ -241,28 +259,6 @@ the project demonstrates a more realistic fraud analytics workflow that can supp
 
 ---
 
-# 📂 Suggested Repository Structure
-
-```bash
-bayesian-credit-card-fraud-detection/
-│
-├── data/
-│   ├── raw/
-│   └── processed/
-├── figures/
-│   ├── precision_recall_curve.png
-│   ├── roc_curve.png
-│   ├── threshold_policy_comparison.png
-│   ├── bayesian_uncertainty_intervals.png
-│   └── high_uncertainty_cases.png
-├── notebooks/
-│   └── fraud_detection_analysis.ipynb
-├── README.md
-└── requirements.txt
-```
-
----
-
-# Final Takeaway
+### Final Takeaway
 
 > In highly imbalanced fraud detection problems, the best solution is not just the best model. It is the best combination of **model, threshold, and decision strategy**.
